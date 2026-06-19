@@ -1,0 +1,480 @@
+2026-06-19 14:34:01  INFO      [BTC/USDT] NEW LONG signal  |  close=64509.40  RSI=44.8  strength=4/6  candle=2026-06-17 20:00:00+00:00
+2026-06-19 14:34:01  WARNING   DISCORD_WEBHOOK_URL is empty — alert skipped.
+2026-06-19 14:34:01  WARNING   [BTC/USDT] Discord alert FAILED — will retry next cycle.
+2026-06-19 14:34:02  INFO      [ETH/USDT] NEW LONG signal  |  close=1734.72  RSI=46.9  strength=4/6  candle=2026-06-17 16:00:00+00:00
+2026-06-19 14:34:02  WARNING   DISCORD_WEBHOOK_URL is empty — alert skipped.
+2026-06-19 14:34:02  WARNING   [ETH/USDT] Discord alert FAILED — will retry next cycle.
+2026-06-19 14:41:58  INFO      ============================================================
+2026-06-19 14:41:58  INFO        SMC + FVG + EMA + RSI  —  Real-time Monitor
+2026-06-19 14:41:58  INFO        Symbols   : BTC/USDT  |  ETH/USDT
+2026-06-19 14:41:58  INFO        Timeframe : 4H
+2026-06-19 14:41:58  INFO        Interval  : 300s  (~5 min)
+2026-06-19 14:41:58  INFO      ============================================================
+2026-06-19 14:41:58  INFO      ── Polling at 2026-06-19 06:41 UTC ──
+2026-06-19 14:41:59  INFO      [BTC/USDT] NEW LONG signal  |  close=64509.40  RSI=44.8  strength=4/6  candle=2026-06-17 20:00:00+00:00
+2026-06-19 14:41:59  INFO      Discord alert sent: BTC/USDT 4h
+2026-06-19 14:41:59  INFO      [BTC/USDT] Discord alert sent successfully.
+2026-06-19 14:42:00  INFO      [ETH/USDT] NEW LONG signal  |  close=1734.72  RSI=46.9  strength=4/6  candle=2026-06-17 16:00:00+00:00
+2026-06-19 14:42:01  INFO      Discord alert sent: ETH/USDT 4h
+2026-06-19 14:42:01  INFO      [ETH/USDT] Discord alert sent successfully.
+2026-06-19 14:42:01  INFO      Next check in 300 seconds. Press Ctrl+C to stop.
+
+2026-06-19 14:47:01  INFO      ── Polling at 2026-06-19 06:47 UTC ──
+2026-06-19 14:47:02  INFO      [BTC/USDT] Latest signal (LONG @ 2026-06-17 20:00:00+00:00) already alerted — skipping.
+2026-06-19 14:47:03  INFO      [ETH/USDT] Latest signal (LONG @ 2026-06-17 16:00:00+00:00) already alerted — skipping.
+2026-06-19 14:47:03  INFO      Next check in 300 seconds. Press Ctrl+C to stop.
+
+2026-06-19 14:52:03  INFO      ── Polling at 2026-06-19 06:52 UTC ──
+2026-06-19 14:52:05  INFO      [BTC/USDT] Latest signal (LONG @ 2026-06-17 20:00:00+00:00) already alerted — skipping.
+2026-06-19 14:52:06  INFO      [ETH/USDT] Latest signal (LONG @ 2026-06-17 16:00:00+00:00) already alerted — skipping.
+2026-06-19 14:52:06  INFO      Next check in 300 seconds. Press Ctrl+C to stop.
+
+2026-06-19 14:57:06  INFO      ── Polling at 2026-06-19 06:57 UTC ──
+2026-06-19 14:57:07  INFO      [BTC/USDT] Latest signal (LONG @ 2026-06-17 20:00:00+00:00) already alerted — skipping.
+2026-06-19 14:57:08  INFO      [ETH/USDT] Latest signal (LONG @ 2026-06-17 16:00:00+00:00) already alerted — skipping.
+2026-06-19 14:57:08  INFO      Next check in 300 seconds. Press Ctrl+C to stop.
+
+2026-06-19 15:02:08  INFO      ── Polling at 2026-06-19 07:02 UTC ──
+2026-06-19 15:02:09  INFO      [BTC/USDT] Latest signal (LONG @ 2026-06-17 20:00:00+00:00) already alerted — skipping.
+2026-06-19 15:02:10  INFO      [ETH/USDT] Latest signal (LONG @ 2026-06-17 16:00:00+00:00) already alerted — skipping.
+2026-06-19 15:02:10  INFO      Next check in 300 seconds. Press Ctrl+C to stop.
+
+2026-06-19 15:07:10  INFO      ── Polling at 2026-06-19 07:07 UTC ──
+2026-06-19 15:07:12  INFO      [BTC/USDT] Latest signal (LONG @ 2026-06-17 20:00:00+00:00) already alerted — skipping.
+2026-06-19 15:07:13  INFO      [ETH/USDT] Latest signal (LONG @ 2026-06-17 16:00:00+00:00) already alerted — skipping.
+2026-06-19 15:07:13  INFO      Next check in 300 seconds. Press Ctrl+C to stop.
+
+2026-06-19 15:12:13  INFO      ── Polling at 2026-06-19 07:12 UTC ──
+2026-06-19 15:12:14  INFO      [BTC/USDT] Latest signal (LONG @ 2026-06-17 20:00:00+00:00) already alerted — skipping.
+2026-06-19 15:12:15  INFO      [ETH/USDT] Latest signal (LONG @ 2026-06-17 16:00:00+00:00) already alerted — skipping.
+2026-06-19 15:12:15  INFO      Next check in 300 seconds. Press Ctrl+C to stop.
+
+2026-06-19 15:17:15  INFO      ── Polling at 2026-06-19 07:17 UTC ──
+2026-06-19 15:17:16  INFO      [BTC/USDT] Latest signal (LONG @ 2026-06-17 20:00:00+00:00) already alerted — skipping.
+2026-06-19 15:17:17  INFO      [ETH/USDT] Latest signal (LONG @ 2026-06-17 16:00:00+00:00) already alerted — skipping.
+2026-06-19 15:17:17  INFO      Next check in 300 seconds. Press Ctrl+C to stop.
+
+2026-06-19 15:21:53  INFO      Monitor stopped by user.
+2026-06-19 15:23:34  INFO      [BTC/USDT] NEW LONG signal  |  close=64509.40  SL=62761.52  TP=68005.16  RSI=44.8  strength=4/6  candle=2026-06-17 20:00:00+00:00
+2026-06-19 15:23:34  WARNING   DISCORD_WEBHOOK_URL is empty — alert skipped.
+2026-06-19 15:23:34  WARNING   [BTC/USDT] Discord alert FAILED — will retry next cycle.
+2026-06-19 15:24:22  INFO      ============================================================
+2026-06-19 15:24:22  INFO        SMC + FVG + EMA + RSI  —  Real-time Monitor
+2026-06-19 15:24:22  INFO        Symbols   : BTC/USDT  |  ETH/USDT
+2026-06-19 15:24:22  INFO        Timeframe : 4H
+2026-06-19 15:24:22  INFO        Interval  : 300s  (~5 min)
+2026-06-19 15:24:22  INFO      ============================================================
+2026-06-19 15:24:23  INFO      ── Polling at 2026-06-19 07:24 UTC ──
+2026-06-19 15:24:24  INFO      [BTC/USDT] NEW LONG signal  |  close=64509.40  SL=62761.52  TP=68005.16  RSI=44.8  strength=4/6  candle=2026-06-17 20:00:00+00:00
+2026-06-19 15:24:25  INFO      Discord alert sent: BTC/USDT 4h
+2026-06-19 15:24:25  INFO      [BTC/USDT] Discord alert sent successfully.
+2026-06-19 15:24:26  INFO      [ETH/USDT] NEW LONG signal  |  close=1734.72  SL=1670.45  TP=1863.25  RSI=46.9  strength=4/6  candle=2026-06-17 16:00:00+00:00
+2026-06-19 15:24:26  INFO      Discord alert sent: ETH/USDT 4h
+2026-06-19 15:24:26  INFO      [ETH/USDT] Discord alert sent successfully.
+2026-06-19 15:24:26  INFO      Next check in 300 seconds. Press Ctrl+C to stop.
+
+2026-06-19 15:29:26  INFO      ── Polling at 2026-06-19 07:29 UTC ──
+2026-06-19 15:29:27  INFO      [BTC/USDT] Latest signal (LONG @ 2026-06-17 20:00:00+00:00) already alerted — skipping.
+2026-06-19 15:29:28  INFO      [ETH/USDT] Latest signal (LONG @ 2026-06-17 16:00:00+00:00) already alerted — skipping.
+2026-06-19 15:29:28  INFO      Next check in 300 seconds. Press Ctrl+C to stop.
+
+2026-06-19 15:33:47  INFO      Monitor stopped by user.
+2026-06-19 15:36:58  INFO      ============================================================
+2026-06-19 15:36:58  INFO        SMC + FVG + EMA + RSI  —  Real-time Monitor
+2026-06-19 15:36:58  INFO        Symbols   : BTC/USDT  |  ETH/USDT
+2026-06-19 15:36:58  INFO        Timeframe : 4H
+2026-06-19 15:36:58  INFO        Interval  : 300s  (~5 min)
+2026-06-19 15:36:58  INFO      ============================================================
+2026-06-19 15:36:58  INFO      ── Polling at 2026-06-19 07:36 UTC ──
+2026-06-19 15:36:59  INFO      [BTC/USDT] NEW LONG signal  |  close=64509.40  SL=62761.52  TP=68005.16  RSI=44.8  strength=4/6  candle=2026-06-17 20:00:00+00:00
+2026-06-19 15:37:00  INFO      Discord alert sent: BTC/USDT 4h
+2026-06-19 15:37:00  INFO      [BTC/USDT] Discord alert sent successfully.
+2026-06-19 15:37:01  INFO      [ETH/USDT] NEW LONG signal  |  close=1734.72  SL=1670.45  TP=1863.25  RSI=46.9  strength=4/6  candle=2026-06-17 16:00:00+00:00
+2026-06-19 15:37:01  INFO      Discord alert sent: ETH/USDT 4h
+2026-06-19 15:37:01  INFO      [ETH/USDT] Discord alert sent successfully.
+2026-06-19 15:37:01  INFO      Next check in 300 seconds. Press Ctrl+C to stop.
+
+2026-06-19 15:43:06  INFO      ============================================================
+2026-06-19 15:43:06  INFO        SMC + FVG + EMA + RSI  —  Real-time Monitor
+2026-06-19 15:43:06  INFO        Symbols   : BTC/USDT  |  ETH/USDT
+2026-06-19 15:43:06  INFO        Timeframe : 4H
+2026-06-19 15:43:06  INFO        Interval  : 300s  (~5 min)
+2026-06-19 15:43:06  INFO      ============================================================
+2026-06-19 15:43:06  INFO      ── Polling at 2026-06-19 07:43 UTC ──
+2026-06-19 15:43:07  INFO      [BTC/USDT] NEW LONG signal  |  close=64509.40  SL=62761.52  TP=68005.16  RSI=44.8  strength=4/6  candle=2026-06-17 20:00:00+00:00
+2026-06-19 15:43:08  INFO      Discord alert sent: BTC/USDT 4h
+2026-06-19 15:43:08  INFO      [BTC/USDT] Discord alert sent successfully.
+2026-06-19 15:43:08  INFO      [BTC/USDT] Trade registered in journal  id=9bacc897
+2026-06-19 15:43:09  INFO      [ETH/USDT] NEW LONG signal  |  close=1734.72  SL=1670.45  TP=1863.25  RSI=46.9  strength=4/6  candle=2026-06-17 16:00:00+00:00
+2026-06-19 15:43:09  INFO      Discord alert sent: ETH/USDT 4h
+2026-06-19 15:43:09  INFO      [ETH/USDT] Discord alert sent successfully.
+2026-06-19 15:43:09  INFO      [ETH/USDT] Trade registered in journal  id=58ce9e33
+2026-06-19 15:43:09  INFO      Next check in 300 seconds. Press Ctrl+C to stop.
+
+2026-06-19 15:44:47  INFO      Monitor stopped by user.
+2026-06-19 15:48:30  INFO      ============================================================
+2026-06-19 15:48:30  INFO        SMC + FVG + EMA + RSI  —  Real-time Monitor
+2026-06-19 15:48:30  INFO        Symbols   : BTC/USDT  |  ETH/USDT
+2026-06-19 15:48:30  INFO        Timeframe : 4H
+2026-06-19 15:48:30  INFO        Interval  : 300s  (~5 min)
+2026-06-19 15:48:30  INFO      ============================================================
+2026-06-19 15:48:30  INFO      ── Polling at 2026-06-19 07:48 UTC ──
+2026-06-19 15:48:31  INFO      [BTC/USDT] 🛑 SL hit  |  entry=64509.40  exit=62761.52  pnl=-2.71%  id=9bacc897
+2026-06-19 15:48:32  INFO      Exit alert sent: BTC/USDT SL `-2.71%`
+2026-06-19 15:48:32  INFO      [BTC/USDT] NEW LONG signal  |  close=64509.40  SL=62761.52  TP=68005.16  RSI=44.8  strength=4/6  candle=2026-06-17 20:00:00+00:00
+2026-06-19 15:48:32  INFO      Discord alert sent: BTC/USDT 4h
+2026-06-19 15:48:32  INFO      [BTC/USDT] Discord alert sent successfully.
+2026-06-19 15:48:32  INFO      [BTC/USDT] Trade registered in journal  id=bbfb4276
+2026-06-19 15:48:33  INFO      [ETH/USDT] NEW LONG signal  |  close=1734.72  SL=1670.45  TP=1863.25  RSI=46.9  strength=4/6  candle=2026-06-17 16:00:00+00:00
+2026-06-19 15:48:33  INFO      Discord alert sent: ETH/USDT 4h
+2026-06-19 15:48:33  INFO      [ETH/USDT] Discord alert sent successfully.
+2026-06-19 15:48:33  INFO      [ETH/USDT] Trade registered in journal  id=58ce9e33
+2026-06-19 15:48:33  INFO      Next check in 300 seconds. Press Ctrl+C to stop.
+
+2026-06-19 15:53:33  INFO      ── Polling at 2026-06-19 07:53 UTC ──
+2026-06-19 15:53:35  INFO      [BTC/USDT] 🛑 SL hit  |  entry=64509.40  exit=62761.52  pnl=-2.71%  id=bbfb4276
+2026-06-19 15:53:35  INFO      Exit alert sent: BTC/USDT SL `-2.71%`
+2026-06-19 15:53:35  INFO      [BTC/USDT] Latest signal (LONG @ 2026-06-17 20:00:00+00:00) already alerted — skipping.
+2026-06-19 15:53:36  INFO      [ETH/USDT] Latest signal (LONG @ 2026-06-17 16:00:00+00:00) already alerted — skipping.
+2026-06-19 15:53:36  INFO      Next check in 300 seconds. Press Ctrl+C to stop.
+
+2026-06-19 15:58:36  INFO      ── Polling at 2026-06-19 07:58 UTC ──
+2026-06-19 15:58:37  INFO      [BTC/USDT] Latest signal (LONG @ 2026-06-17 20:00:00+00:00) already alerted — skipping.
+2026-06-19 15:58:38  INFO      [ETH/USDT] Latest signal (LONG @ 2026-06-17 16:00:00+00:00) already alerted — skipping.
+2026-06-19 15:58:38  INFO      Next check in 300 seconds. Press Ctrl+C to stop.
+
+2026-06-19 16:03:38  INFO      ── Polling at 2026-06-19 08:03 UTC ──
+2026-06-19 16:03:39  INFO      [BTC/USDT] Latest signal (LONG @ 2026-06-17 20:00:00+00:00) already alerted — skipping.
+2026-06-19 16:03:41  INFO      [ETH/USDT] Latest signal (LONG @ 2026-06-17 16:00:00+00:00) already alerted — skipping.
+2026-06-19 16:03:41  INFO      Next check in 300 seconds. Press Ctrl+C to stop.
+
+2026-06-19 16:08:41  INFO      ── Polling at 2026-06-19 08:08 UTC ──
+2026-06-19 16:08:42  INFO      [BTC/USDT] Latest signal (LONG @ 2026-06-17 20:00:00+00:00) already alerted — skipping.
+2026-06-19 16:08:43  INFO      [ETH/USDT] Latest signal (LONG @ 2026-06-17 16:00:00+00:00) already alerted — skipping.
+2026-06-19 16:08:43  INFO      Next check in 300 seconds. Press Ctrl+C to stop.
+
+2026-06-19 16:13:43  INFO      ── Polling at 2026-06-19 08:13 UTC ──
+2026-06-19 16:13:44  INFO      [BTC/USDT] Latest signal (LONG @ 2026-06-17 20:00:00+00:00) already alerted — skipping.
+2026-06-19 16:13:45  INFO      [ETH/USDT] Latest signal (LONG @ 2026-06-17 16:00:00+00:00) already alerted — skipping.
+2026-06-19 16:13:45  INFO      Next check in 300 seconds. Press Ctrl+C to stop.
+
+2026-06-19 16:18:45  INFO      ── Polling at 2026-06-19 08:18 UTC ──
+2026-06-19 16:18:46  INFO      [BTC/USDT] Latest signal (LONG @ 2026-06-17 20:00:00+00:00) already alerted — skipping.
+2026-06-19 16:18:47  INFO      [ETH/USDT] Latest signal (LONG @ 2026-06-17 16:00:00+00:00) already alerted — skipping.
+2026-06-19 16:18:47  INFO      Next check in 300 seconds. Press Ctrl+C to stop.
+
+2026-06-19 16:23:47  INFO      ── Polling at 2026-06-19 08:23 UTC ──
+2026-06-19 16:23:49  INFO      [BTC/USDT] Latest signal (LONG @ 2026-06-17 20:00:00+00:00) already alerted — skipping.
+2026-06-19 16:23:50  INFO      [ETH/USDT] Latest signal (LONG @ 2026-06-17 16:00:00+00:00) already alerted — skipping.
+2026-06-19 16:23:50  INFO      Next check in 300 seconds. Press Ctrl+C to stop.
+
+2026-06-19 16:28:50  INFO      ── Polling at 2026-06-19 08:28 UTC ──
+2026-06-19 16:28:51  INFO      [BTC/USDT] Latest signal (LONG @ 2026-06-17 20:00:00+00:00) already alerted — skipping.
+2026-06-19 16:28:52  INFO      [ETH/USDT] Latest signal (LONG @ 2026-06-17 16:00:00+00:00) already alerted — skipping.
+2026-06-19 16:28:52  INFO      Next check in 300 seconds. Press Ctrl+C to stop.
+
+2026-06-19 16:33:52  INFO      ── Polling at 2026-06-19 08:33 UTC ──
+2026-06-19 16:33:54  INFO      [BTC/USDT] Latest signal (LONG @ 2026-06-17 20:00:00+00:00) already alerted — skipping.
+2026-06-19 16:33:56  INFO      [ETH/USDT] Latest signal (LONG @ 2026-06-17 16:00:00+00:00) already alerted — skipping.
+2026-06-19 16:33:56  INFO      Next check in 300 seconds. Press Ctrl+C to stop.
+
+2026-06-19 16:38:56  INFO      ── Polling at 2026-06-19 08:38 UTC ──
+2026-06-19 16:38:57  INFO      [BTC/USDT] Latest signal (LONG @ 2026-06-17 20:00:00+00:00) already alerted — skipping.
+2026-06-19 16:38:58  INFO      [ETH/USDT] Latest signal (LONG @ 2026-06-17 16:00:00+00:00) already alerted — skipping.
+2026-06-19 16:38:58  INFO      Next check in 300 seconds. Press Ctrl+C to stop.
+
+2026-06-19 16:43:58  INFO      ── Polling at 2026-06-19 08:43 UTC ──
+2026-06-19 16:43:59  INFO      [BTC/USDT] Latest signal (LONG @ 2026-06-17 20:00:00+00:00) already alerted — skipping.
+2026-06-19 16:44:00  INFO      [ETH/USDT] Latest signal (LONG @ 2026-06-17 16:00:00+00:00) already alerted — skipping.
+2026-06-19 16:44:00  INFO      [STATS] Closed=2  Open=1  WinRate=0.0%  TotalPnL=-5.42%  PF=0.00
+2026-06-19 16:44:00  INFO      [STATS]   BTC/USDT  trades=2  wins=0  WinRate=0.0%  PnL=-5.42%
+2026-06-19 16:44:00  INFO      Next check in 300 seconds. Press Ctrl+C to stop.
+
+2026-06-19 16:49:00  INFO      ── Polling at 2026-06-19 08:49 UTC ──
+2026-06-19 16:49:01  INFO      [BTC/USDT] Latest signal (LONG @ 2026-06-17 20:00:00+00:00) already alerted — skipping.
+2026-06-19 16:49:02  INFO      [ETH/USDT] Latest signal (LONG @ 2026-06-17 16:00:00+00:00) already alerted — skipping.
+2026-06-19 16:49:02  INFO      Next check in 300 seconds. Press Ctrl+C to stop.
+
+2026-06-19 16:54:02  INFO      ── Polling at 2026-06-19 08:54 UTC ──
+2026-06-19 16:54:04  INFO      [BTC/USDT] Latest signal (LONG @ 2026-06-17 20:00:00+00:00) already alerted — skipping.
+2026-06-19 16:54:05  INFO      [ETH/USDT] Latest signal (LONG @ 2026-06-17 16:00:00+00:00) already alerted — skipping.
+2026-06-19 16:54:05  INFO      Next check in 300 seconds. Press Ctrl+C to stop.
+
+2026-06-19 16:59:05  INFO      ── Polling at 2026-06-19 08:59 UTC ──
+2026-06-19 16:59:06  INFO      [BTC/USDT] Latest signal (LONG @ 2026-06-17 20:00:00+00:00) already alerted — skipping.
+2026-06-19 16:59:07  INFO      [ETH/USDT] Latest signal (LONG @ 2026-06-17 16:00:00+00:00) already alerted — skipping.
+2026-06-19 16:59:07  INFO      Next check in 300 seconds. Press Ctrl+C to stop.
+
+2026-06-19 17:04:07  INFO      ── Polling at 2026-06-19 09:04 UTC ──
+2026-06-19 17:04:08  INFO      [BTC/USDT] Latest signal (LONG @ 2026-06-17 20:00:00+00:00) already alerted — skipping.
+2026-06-19 17:04:09  INFO      [ETH/USDT] Latest signal (LONG @ 2026-06-17 16:00:00+00:00) already alerted — skipping.
+2026-06-19 17:04:09  INFO      Next check in 300 seconds. Press Ctrl+C to stop.
+
+2026-06-19 17:09:09  INFO      ── Polling at 2026-06-19 09:09 UTC ──
+2026-06-19 17:09:10  INFO      [BTC/USDT] Latest signal (LONG @ 2026-06-17 20:00:00+00:00) already alerted — skipping.
+2026-06-19 17:09:11  INFO      [ETH/USDT] Latest signal (LONG @ 2026-06-17 16:00:00+00:00) already alerted — skipping.
+2026-06-19 17:09:11  INFO      Next check in 300 seconds. Press Ctrl+C to stop.
+
+2026-06-19 17:14:11  INFO      ── Polling at 2026-06-19 09:14 UTC ──
+2026-06-19 17:14:13  INFO      [BTC/USDT] Latest signal (LONG @ 2026-06-17 20:00:00+00:00) already alerted — skipping.
+2026-06-19 17:14:14  INFO      [ETH/USDT] Latest signal (LONG @ 2026-06-17 16:00:00+00:00) already alerted — skipping.
+2026-06-19 17:14:14  INFO      Next check in 300 seconds. Press Ctrl+C to stop.
+
+2026-06-19 17:19:14  INFO      ── Polling at 2026-06-19 09:19 UTC ──
+2026-06-19 17:19:15  INFO      [BTC/USDT] Latest signal (LONG @ 2026-06-17 20:00:00+00:00) already alerted — skipping.
+2026-06-19 17:19:16  INFO      [ETH/USDT] Latest signal (LONG @ 2026-06-17 16:00:00+00:00) already alerted — skipping.
+2026-06-19 17:19:16  INFO      Next check in 300 seconds. Press Ctrl+C to stop.
+
+2026-06-19 17:24:16  INFO      ── Polling at 2026-06-19 09:24 UTC ──
+2026-06-19 17:24:17  INFO      [BTC/USDT] Latest signal (LONG @ 2026-06-17 20:00:00+00:00) already alerted — skipping.
+2026-06-19 17:24:18  INFO      [ETH/USDT] Latest signal (LONG @ 2026-06-17 16:00:00+00:00) already alerted — skipping.
+2026-06-19 17:24:18  INFO      Next check in 300 seconds. Press Ctrl+C to stop.
+
+2026-06-19 17:29:18  INFO      ── Polling at 2026-06-19 09:29 UTC ──
+2026-06-19 17:29:19  INFO      [BTC/USDT] Latest signal (LONG @ 2026-06-17 20:00:00+00:00) already alerted — skipping.
+2026-06-19 17:29:20  INFO      [ETH/USDT] Latest signal (LONG @ 2026-06-17 16:00:00+00:00) already alerted — skipping.
+2026-06-19 17:29:20  INFO      Next check in 300 seconds. Press Ctrl+C to stop.
+
+2026-06-19 17:34:20  INFO      ── Polling at 2026-06-19 09:34 UTC ──
+2026-06-19 17:34:21  INFO      [BTC/USDT] Latest signal (LONG @ 2026-06-17 20:00:00+00:00) already alerted — skipping.
+2026-06-19 17:34:23  INFO      [ETH/USDT] Latest signal (LONG @ 2026-06-17 16:00:00+00:00) already alerted — skipping.
+2026-06-19 17:34:23  INFO      Next check in 300 seconds. Press Ctrl+C to stop.
+
+2026-06-19 17:39:23  INFO      ── Polling at 2026-06-19 09:39 UTC ──
+2026-06-19 17:39:24  INFO      [BTC/USDT] Latest signal (LONG @ 2026-06-17 20:00:00+00:00) already alerted — skipping.
+2026-06-19 17:39:25  INFO      [ETH/USDT] Latest signal (LONG @ 2026-06-17 16:00:00+00:00) already alerted — skipping.
+2026-06-19 17:39:25  INFO      Next check in 300 seconds. Press Ctrl+C to stop.
+
+2026-06-19 17:44:25  INFO      ── Polling at 2026-06-19 09:44 UTC ──
+2026-06-19 17:44:26  INFO      [BTC/USDT] Latest signal (LONG @ 2026-06-17 20:00:00+00:00) already alerted — skipping.
+2026-06-19 17:44:27  INFO      [ETH/USDT] Latest signal (LONG @ 2026-06-17 16:00:00+00:00) already alerted — skipping.
+2026-06-19 17:44:27  INFO      [STATS] Closed=2  Open=1  WinRate=0.0%  TotalPnL=-5.42%  PF=0.00
+2026-06-19 17:44:27  INFO      [STATS]   BTC/USDT  trades=2  wins=0  WinRate=0.0%  PnL=-5.42%
+2026-06-19 17:44:27  INFO      Next check in 300 seconds. Press Ctrl+C to stop.
+
+2026-06-19 17:49:27  INFO      ── Polling at 2026-06-19 09:49 UTC ──
+2026-06-19 17:49:28  INFO      [BTC/USDT] Latest signal (LONG @ 2026-06-17 20:00:00+00:00) already alerted — skipping.
+2026-06-19 17:49:29  INFO      [ETH/USDT] Latest signal (LONG @ 2026-06-17 16:00:00+00:00) already alerted — skipping.
+2026-06-19 17:49:29  INFO      Next check in 300 seconds. Press Ctrl+C to stop.
+
+2026-06-19 17:54:29  INFO      ── Polling at 2026-06-19 09:54 UTC ──
+2026-06-19 17:54:30  INFO      [BTC/USDT] Latest signal (LONG @ 2026-06-17 20:00:00+00:00) already alerted — skipping.
+2026-06-19 17:54:32  INFO      [ETH/USDT] Latest signal (LONG @ 2026-06-17 16:00:00+00:00) already alerted — skipping.
+2026-06-19 17:54:32  INFO      Next check in 300 seconds. Press Ctrl+C to stop.
+
+2026-06-19 17:59:32  INFO      ── Polling at 2026-06-19 09:59 UTC ──
+2026-06-19 17:59:33  INFO      [BTC/USDT] Latest signal (LONG @ 2026-06-17 20:00:00+00:00) already alerted — skipping.
+2026-06-19 17:59:34  INFO      [ETH/USDT] Latest signal (LONG @ 2026-06-17 16:00:00+00:00) already alerted — skipping.
+2026-06-19 17:59:34  INFO      Next check in 300 seconds. Press Ctrl+C to stop.
+
+2026-06-19 18:04:34  INFO      ── Polling at 2026-06-19 10:04 UTC ──
+2026-06-19 18:04:35  INFO      [BTC/USDT] Latest signal (LONG @ 2026-06-17 20:00:00+00:00) already alerted — skipping.
+2026-06-19 18:04:36  INFO      [ETH/USDT] Latest signal (LONG @ 2026-06-17 16:00:00+00:00) already alerted — skipping.
+2026-06-19 18:04:36  INFO      Next check in 300 seconds. Press Ctrl+C to stop.
+
+2026-06-19 18:09:36  INFO      ── Polling at 2026-06-19 10:09 UTC ──
+2026-06-19 18:09:37  INFO      [BTC/USDT] Latest signal (LONG @ 2026-06-17 20:00:00+00:00) already alerted — skipping.
+2026-06-19 18:09:38  INFO      [ETH/USDT] Latest signal (LONG @ 2026-06-17 16:00:00+00:00) already alerted — skipping.
+2026-06-19 18:09:38  INFO      Next check in 300 seconds. Press Ctrl+C to stop.
+
+2026-06-19 18:14:38  INFO      ── Polling at 2026-06-19 10:14 UTC ──
+2026-06-19 18:14:39  INFO      [BTC/USDT] Latest signal (LONG @ 2026-06-17 20:00:00+00:00) already alerted — skipping.
+2026-06-19 18:14:40  INFO      [ETH/USDT] Latest signal (LONG @ 2026-06-17 16:00:00+00:00) already alerted — skipping.
+2026-06-19 18:14:40  INFO      Next check in 300 seconds. Press Ctrl+C to stop.
+
+2026-06-19 18:19:40  INFO      ── Polling at 2026-06-19 10:19 UTC ──
+2026-06-19 18:19:41  INFO      [BTC/USDT] Latest signal (LONG @ 2026-06-17 20:00:00+00:00) already alerted — skipping.
+2026-06-19 18:19:43  INFO      [ETH/USDT] Latest signal (LONG @ 2026-06-17 16:00:00+00:00) already alerted — skipping.
+2026-06-19 18:19:43  INFO      Next check in 300 seconds. Press Ctrl+C to stop.
+
+2026-06-19 18:24:43  INFO      ── Polling at 2026-06-19 10:24 UTC ──
+2026-06-19 18:24:44  INFO      [BTC/USDT] Latest signal (LONG @ 2026-06-17 20:00:00+00:00) already alerted — skipping.
+2026-06-19 18:24:45  INFO      [ETH/USDT] Latest signal (LONG @ 2026-06-17 16:00:00+00:00) already alerted — skipping.
+2026-06-19 18:24:45  INFO      Next check in 300 seconds. Press Ctrl+C to stop.
+
+2026-06-19 18:29:45  INFO      ── Polling at 2026-06-19 10:29 UTC ──
+2026-06-19 18:29:46  INFO      [BTC/USDT] Latest signal (LONG @ 2026-06-17 20:00:00+00:00) already alerted — skipping.
+2026-06-19 18:29:47  INFO      [ETH/USDT] Latest signal (LONG @ 2026-06-17 16:00:00+00:00) already alerted — skipping.
+2026-06-19 18:29:47  INFO      Next check in 300 seconds. Press Ctrl+C to stop.
+
+2026-06-19 18:34:47  INFO      ── Polling at 2026-06-19 10:34 UTC ──
+2026-06-19 18:34:49  INFO      [BTC/USDT] Latest signal (LONG @ 2026-06-17 20:00:00+00:00) already alerted — skipping.
+2026-06-19 18:34:50  INFO      [ETH/USDT] Latest signal (LONG @ 2026-06-17 16:00:00+00:00) already alerted — skipping.
+2026-06-19 18:34:50  INFO      Next check in 300 seconds. Press Ctrl+C to stop.
+
+2026-06-19 18:39:50  INFO      ── Polling at 2026-06-19 10:39 UTC ──
+2026-06-19 18:39:51  INFO      [BTC/USDT] Latest signal (LONG @ 2026-06-17 20:00:00+00:00) already alerted — skipping.
+2026-06-19 18:39:52  INFO      [ETH/USDT] Latest signal (LONG @ 2026-06-17 16:00:00+00:00) already alerted — skipping.
+2026-06-19 18:39:52  INFO      Next check in 300 seconds. Press Ctrl+C to stop.
+
+2026-06-19 18:44:52  INFO      ── Polling at 2026-06-19 10:44 UTC ──
+2026-06-19 18:44:53  INFO      [BTC/USDT] Latest signal (LONG @ 2026-06-17 20:00:00+00:00) already alerted — skipping.
+2026-06-19 18:44:54  INFO      [ETH/USDT] Latest signal (LONG @ 2026-06-17 16:00:00+00:00) already alerted — skipping.
+2026-06-19 18:44:54  INFO      [STATS] Closed=2  Open=1  WinRate=0.0%  TotalPnL=-5.42%  PF=0.00
+2026-06-19 18:44:54  INFO      [STATS]   BTC/USDT  trades=2  wins=0  WinRate=0.0%  PnL=-5.42%
+2026-06-19 18:44:54  INFO      Next check in 300 seconds. Press Ctrl+C to stop.
+
+2026-06-19 18:49:54  INFO      ── Polling at 2026-06-19 10:49 UTC ──
+2026-06-19 18:49:55  INFO      [BTC/USDT] Latest signal (LONG @ 2026-06-17 20:00:00+00:00) already alerted — skipping.
+2026-06-19 18:49:56  INFO      [ETH/USDT] Latest signal (LONG @ 2026-06-17 16:00:00+00:00) already alerted — skipping.
+2026-06-19 18:49:56  INFO      Next check in 300 seconds. Press Ctrl+C to stop.
+
+2026-06-19 18:54:56  INFO      ── Polling at 2026-06-19 10:54 UTC ──
+2026-06-19 18:54:57  INFO      [BTC/USDT] Latest signal (LONG @ 2026-06-17 20:00:00+00:00) already alerted — skipping.
+2026-06-19 18:54:59  INFO      [ETH/USDT] Latest signal (LONG @ 2026-06-17 16:00:00+00:00) already alerted — skipping.
+2026-06-19 18:54:59  INFO      Next check in 300 seconds. Press Ctrl+C to stop.
+
+2026-06-19 18:59:59  INFO      ── Polling at 2026-06-19 10:59 UTC ──
+2026-06-19 19:00:00  INFO      [BTC/USDT] Latest signal (LONG @ 2026-06-17 20:00:00+00:00) already alerted — skipping.
+2026-06-19 19:00:04  INFO      [ETH/USDT] Latest signal (LONG @ 2026-06-17 16:00:00+00:00) already alerted — skipping.
+2026-06-19 19:00:04  INFO      Next check in 300 seconds. Press Ctrl+C to stop.
+
+2026-06-19 19:05:04  INFO      ── Polling at 2026-06-19 11:05 UTC ──
+2026-06-19 19:05:05  INFO      [BTC/USDT] Latest signal (LONG @ 2026-06-17 20:00:00+00:00) already alerted — skipping.
+2026-06-19 19:05:06  INFO      [ETH/USDT] Latest signal (LONG @ 2026-06-17 16:00:00+00:00) already alerted — skipping.
+2026-06-19 19:05:06  INFO      Next check in 300 seconds. Press Ctrl+C to stop.
+
+2026-06-19 19:10:06  INFO      ── Polling at 2026-06-19 11:10 UTC ──
+2026-06-19 19:10:07  INFO      [BTC/USDT] Latest signal (LONG @ 2026-06-17 20:00:00+00:00) already alerted — skipping.
+2026-06-19 19:10:08  INFO      [ETH/USDT] Latest signal (LONG @ 2026-06-17 16:00:00+00:00) already alerted — skipping.
+2026-06-19 19:10:08  INFO      Next check in 300 seconds. Press Ctrl+C to stop.
+
+2026-06-19 19:15:08  INFO      ── Polling at 2026-06-19 11:15 UTC ──
+2026-06-19 19:15:09  INFO      [BTC/USDT] Latest signal (LONG @ 2026-06-17 20:00:00+00:00) already alerted — skipping.
+2026-06-19 19:15:10  INFO      [ETH/USDT] Latest signal (LONG @ 2026-06-17 16:00:00+00:00) already alerted — skipping.
+2026-06-19 19:15:10  INFO      Next check in 300 seconds. Press Ctrl+C to stop.
+
+2026-06-19 19:20:10  INFO      ── Polling at 2026-06-19 11:20 UTC ──
+2026-06-19 19:20:12  INFO      [BTC/USDT] Latest signal (LONG @ 2026-06-17 20:00:00+00:00) already alerted — skipping.
+2026-06-19 19:20:13  INFO      [ETH/USDT] Latest signal (LONG @ 2026-06-17 16:00:00+00:00) already alerted — skipping.
+2026-06-19 19:20:13  INFO      Next check in 300 seconds. Press Ctrl+C to stop.
+
+2026-06-19 19:25:13  INFO      ── Polling at 2026-06-19 11:25 UTC ──
+2026-06-19 19:25:14  INFO      [BTC/USDT] Latest signal (LONG @ 2026-06-17 20:00:00+00:00) already alerted — skipping.
+2026-06-19 19:25:15  INFO      [ETH/USDT] Latest signal (LONG @ 2026-06-17 16:00:00+00:00) already alerted — skipping.
+2026-06-19 19:25:15  INFO      Next check in 300 seconds. Press Ctrl+C to stop.
+
+2026-06-19 19:30:15  INFO      ── Polling at 2026-06-19 11:30 UTC ──
+2026-06-19 19:30:16  INFO      [BTC/USDT] Latest signal (LONG @ 2026-06-17 20:00:00+00:00) already alerted — skipping.
+2026-06-19 19:30:17  INFO      [ETH/USDT] Latest signal (LONG @ 2026-06-17 16:00:00+00:00) already alerted — skipping.
+2026-06-19 19:30:17  INFO      Next check in 300 seconds. Press Ctrl+C to stop.
+
+2026-06-19 19:35:17  INFO      ── Polling at 2026-06-19 11:35 UTC ──
+2026-06-19 19:35:19  INFO      [BTC/USDT] Latest signal (LONG @ 2026-06-17 20:00:00+00:00) already alerted — skipping.
+2026-06-19 19:35:20  INFO      [ETH/USDT] Latest signal (LONG @ 2026-06-17 16:00:00+00:00) already alerted — skipping.
+2026-06-19 19:35:20  INFO      Next check in 300 seconds. Press Ctrl+C to stop.
+
+2026-06-19 19:40:20  INFO      ── Polling at 2026-06-19 11:40 UTC ──
+2026-06-19 19:40:21  INFO      [BTC/USDT] Latest signal (LONG @ 2026-06-17 20:00:00+00:00) already alerted — skipping.
+2026-06-19 19:40:22  INFO      [ETH/USDT] Latest signal (LONG @ 2026-06-17 16:00:00+00:00) already alerted — skipping.
+2026-06-19 19:40:22  INFO      Next check in 300 seconds. Press Ctrl+C to stop.
+
+2026-06-19 19:45:22  INFO      ── Polling at 2026-06-19 11:45 UTC ──
+2026-06-19 19:45:23  INFO      [BTC/USDT] Latest signal (LONG @ 2026-06-17 20:00:00+00:00) already alerted — skipping.
+2026-06-19 19:45:24  INFO      [ETH/USDT] Latest signal (LONG @ 2026-06-17 16:00:00+00:00) already alerted — skipping.
+2026-06-19 19:45:24  INFO      [STATS] Closed=2  Open=1  WinRate=0.0%  TotalPnL=-5.42%  PF=0.00
+2026-06-19 19:45:24  INFO      [STATS]   BTC/USDT  trades=2  wins=0  WinRate=0.0%  PnL=-5.42%
+2026-06-19 19:45:24  INFO      Next check in 300 seconds. Press Ctrl+C to stop.
+
+2026-06-19 19:50:24  INFO      ── Polling at 2026-06-19 11:50 UTC ──
+2026-06-19 19:50:25  INFO      [BTC/USDT] Latest signal (LONG @ 2026-06-17 20:00:00+00:00) already alerted — skipping.
+2026-06-19 19:50:26  INFO      [ETH/USDT] Latest signal (LONG @ 2026-06-17 16:00:00+00:00) already alerted — skipping.
+2026-06-19 19:50:26  INFO      Next check in 300 seconds. Press Ctrl+C to stop.
+
+2026-06-19 19:55:26  INFO      ── Polling at 2026-06-19 11:55 UTC ──
+2026-06-19 19:55:27  INFO      [BTC/USDT] Latest signal (LONG @ 2026-06-17 20:00:00+00:00) already alerted — skipping.
+2026-06-19 19:55:28  INFO      [ETH/USDT] Latest signal (LONG @ 2026-06-17 16:00:00+00:00) already alerted — skipping.
+2026-06-19 19:55:28  INFO      Next check in 300 seconds. Press Ctrl+C to stop.
+
+2026-06-19 20:00:28  INFO      ── Polling at 2026-06-19 12:00 UTC ──
+2026-06-19 20:00:29  INFO      [BTC/USDT] Latest signal (LONG @ 2026-06-17 20:00:00+00:00) already alerted — skipping.
+2026-06-19 20:00:30  INFO      [ETH/USDT] Latest signal (LONG @ 2026-06-17 16:00:00+00:00) already alerted — skipping.
+2026-06-19 20:00:30  INFO      Next check in 300 seconds. Press Ctrl+C to stop.
+
+2026-06-19 20:05:30  INFO      ── Polling at 2026-06-19 12:05 UTC ──
+2026-06-19 20:05:32  INFO      [BTC/USDT] Latest signal (LONG @ 2026-06-17 20:00:00+00:00) already alerted — skipping.
+2026-06-19 20:05:33  INFO      [ETH/USDT] Latest signal (LONG @ 2026-06-17 16:00:00+00:00) already alerted — skipping.
+2026-06-19 20:05:33  INFO      Next check in 300 seconds. Press Ctrl+C to stop.
+
+2026-06-19 20:10:33  INFO      ── Polling at 2026-06-19 12:10 UTC ──
+2026-06-19 20:10:34  INFO      [BTC/USDT] Latest signal (LONG @ 2026-06-17 20:00:00+00:00) already alerted — skipping.
+2026-06-19 20:10:35  INFO      [ETH/USDT] Latest signal (LONG @ 2026-06-17 16:00:00+00:00) already alerted — skipping.
+2026-06-19 20:10:35  INFO      Next check in 300 seconds. Press Ctrl+C to stop.
+
+2026-06-19 20:15:35  INFO      ── Polling at 2026-06-19 12:15 UTC ──
+2026-06-19 20:15:36  INFO      [BTC/USDT] Latest signal (LONG @ 2026-06-17 20:00:00+00:00) already alerted — skipping.
+2026-06-19 20:15:37  INFO      [ETH/USDT] Latest signal (LONG @ 2026-06-17 16:00:00+00:00) already alerted — skipping.
+2026-06-19 20:15:37  INFO      Next check in 300 seconds. Press Ctrl+C to stop.
+
+2026-06-19 20:20:37  INFO      ── Polling at 2026-06-19 12:20 UTC ──
+2026-06-19 20:20:38  INFO      [BTC/USDT] Latest signal (LONG @ 2026-06-17 20:00:00+00:00) already alerted — skipping.
+2026-06-19 20:20:39  INFO      [ETH/USDT] Latest signal (LONG @ 2026-06-17 16:00:00+00:00) already alerted — skipping.
+2026-06-19 20:20:39  INFO      Next check in 300 seconds. Press Ctrl+C to stop.
+
+2026-06-19 20:25:39  INFO      ── Polling at 2026-06-19 12:25 UTC ──
+2026-06-19 20:25:40  INFO      [BTC/USDT] Latest signal (LONG @ 2026-06-17 20:00:00+00:00) already alerted — skipping.
+2026-06-19 20:25:42  INFO      [ETH/USDT] Latest signal (LONG @ 2026-06-17 16:00:00+00:00) already alerted — skipping.
+2026-06-19 20:25:42  INFO      Next check in 300 seconds. Press Ctrl+C to stop.
+
+2026-06-19 20:30:42  INFO      ── Polling at 2026-06-19 12:30 UTC ──
+2026-06-19 20:30:43  INFO      [BTC/USDT] Latest signal (LONG @ 2026-06-17 20:00:00+00:00) already alerted — skipping.
+2026-06-19 20:30:44  INFO      [ETH/USDT] Latest signal (LONG @ 2026-06-17 16:00:00+00:00) already alerted — skipping.
+2026-06-19 20:30:44  INFO      Next check in 300 seconds. Press Ctrl+C to stop.
+
+2026-06-19 20:35:44  INFO      ── Polling at 2026-06-19 12:35 UTC ──
+2026-06-19 20:35:45  INFO      [BTC/USDT] Latest signal (LONG @ 2026-06-17 20:00:00+00:00) already alerted — skipping.
+2026-06-19 20:35:46  INFO      [ETH/USDT] Latest signal (LONG @ 2026-06-17 16:00:00+00:00) already alerted — skipping.
+2026-06-19 20:35:46  INFO      Next check in 300 seconds. Press Ctrl+C to stop.
+
+2026-06-19 20:40:46  INFO      ── Polling at 2026-06-19 12:40 UTC ──
+2026-06-19 20:40:47  INFO      [BTC/USDT] Latest signal (LONG @ 2026-06-17 20:00:00+00:00) already alerted — skipping.
+2026-06-19 20:40:48  INFO      [ETH/USDT] Latest signal (LONG @ 2026-06-17 16:00:00+00:00) already alerted — skipping.
+2026-06-19 20:40:48  INFO      Next check in 300 seconds. Press Ctrl+C to stop.
+
+2026-06-19 20:45:48  INFO      ── Polling at 2026-06-19 12:45 UTC ──
+2026-06-19 20:45:49  INFO      [BTC/USDT] Latest signal (LONG @ 2026-06-17 20:00:00+00:00) already alerted — skipping.
+2026-06-19 20:45:50  INFO      [ETH/USDT] Latest signal (LONG @ 2026-06-17 16:00:00+00:00) already alerted — skipping.
+2026-06-19 20:45:50  INFO      [STATS] Closed=2  Open=1  WinRate=0.0%  TotalPnL=-5.42%  PF=0.00
+2026-06-19 20:45:50  INFO      [STATS]   BTC/USDT  trades=2  wins=0  WinRate=0.0%  PnL=-5.42%
+2026-06-19 20:45:50  INFO      Next check in 300 seconds. Press Ctrl+C to stop.
+
+2026-06-19 20:50:50  INFO      ── Polling at 2026-06-19 12:50 UTC ──
+2026-06-19 20:50:51  INFO      [BTC/USDT] Latest signal (LONG @ 2026-06-17 20:00:00+00:00) already alerted — skipping.
+2026-06-19 20:50:52  INFO      [ETH/USDT] Latest signal (LONG @ 2026-06-17 16:00:00+00:00) already alerted — skipping.
+2026-06-19 20:50:52  INFO      Next check in 300 seconds. Press Ctrl+C to stop.
+
+2026-06-19 20:55:52  INFO      ── Polling at 2026-06-19 12:55 UTC ──
+2026-06-19 20:55:54  INFO      [BTC/USDT] Latest signal (LONG @ 2026-06-17 20:00:00+00:00) already alerted — skipping.
+2026-06-19 20:55:55  INFO      [ETH/USDT] Latest signal (LONG @ 2026-06-17 16:00:00+00:00) already alerted — skipping.
+2026-06-19 20:55:55  INFO      Next check in 300 seconds. Press Ctrl+C to stop.
+
+2026-06-19 21:00:55  INFO      ── Polling at 2026-06-19 13:00 UTC ──
+2026-06-19 21:00:56  INFO      [BTC/USDT] Latest signal (LONG @ 2026-06-17 20:00:00+00:00) already alerted — skipping.
+2026-06-19 21:00:57  INFO      [ETH/USDT] Latest signal (LONG @ 2026-06-17 16:00:00+00:00) already alerted — skipping.
+2026-06-19 21:00:57  INFO      Next check in 300 seconds. Press Ctrl+C to stop.
+
+2026-06-19 21:05:57  INFO      ── Polling at 2026-06-19 13:05 UTC ──
+2026-06-19 21:05:58  INFO      [BTC/USDT] Latest signal (LONG @ 2026-06-17 20:00:00+00:00) already alerted — skipping.
+2026-06-19 21:05:59  INFO      [ETH/USDT] Latest signal (LONG @ 2026-06-17 16:00:00+00:00) already alerted — skipping.
+2026-06-19 21:05:59  INFO      Next check in 300 seconds. Press Ctrl+C to stop.
+
+2026-06-19 21:10:59  INFO      ── Polling at 2026-06-19 13:10 UTC ──
+2026-06-19 21:11:00  INFO      [BTC/USDT] Latest signal (LONG @ 2026-06-17 20:00:00+00:00) already alerted — skipping.
+2026-06-19 21:11:01  INFO      [ETH/USDT] Latest signal (LONG @ 2026-06-17 16:00:00+00:00) already alerted — skipping.
+2026-06-19 21:11:01  INFO      Next check in 300 seconds. Press Ctrl+C to stop.
+
+2026-06-19 21:16:01  INFO      ── Polling at 2026-06-19 13:16 UTC ──
+2026-06-19 21:16:02  INFO      [BTC/USDT] Latest signal (LONG @ 2026-06-17 20:00:00+00:00) already alerted — skipping.
+2026-06-19 21:16:03  INFO      [ETH/USDT] Latest signal (LONG @ 2026-06-17 16:00:00+00:00) already alerted — skipping.
+2026-06-19 21:16:03  INFO      Next check in 300 seconds. Press Ctrl+C to stop.
+
+2026-06-19 21:21:03  INFO      ── Polling at 2026-06-19 13:21 UTC ──
+2026-06-19 21:21:05  INFO      [BTC/USDT] Latest signal (LONG @ 2026-06-17 20:00:00+00:00) already alerted — skipping.
+2026-06-19 21:21:06  INFO      [ETH/USDT] Latest signal (LONG @ 2026-06-17 16:00:00+00:00) already alerted — skipping.
+2026-06-19 21:21:06  INFO      Next check in 300 seconds. Press Ctrl+C to stop.
+
+2026-06-19 21:26:06  INFO      ── Polling at 2026-06-19 13:26 UTC ──
+2026-06-19 21:26:07  INFO      [BTC/USDT] Latest signal (LONG @ 2026-06-17 20:00:00+00:00) already alerted — skipping.
+2026-06-19 21:26:08  INFO      [ETH/USDT] Latest signal (LONG @ 2026-06-17 16:00:00+00:00) already alerted — skipping.
+2026-06-19 21:26:08  INFO      Next check in 300 seconds. Press Ctrl+C to stop.
+

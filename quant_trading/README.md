@@ -27,32 +27,66 @@
 
 | 指標 | 說明 |
 |---|---|
-| **EMA 20 / 50 / 200** | 短中長期趨勢判斷，EMA 20/50 交叉為動能訊號 |
-| **RSI (14)** | 超買 >70 / 超賣 <30，策略取中間範圍作為入場過濾 |
+| **EMA 20 / 50 / 200** | 短中長期趨勢，EMA20/50 方向為第一層必要條件 |
+| **RSI (14)** | 趨勢延續（>55 多方 / <45 空方）或回調反彈（<40 後穿越 45 / >60 後穿越 55 做空）判斷動能 |
 | **SMC — Swing High/Low** | 識別市場結構的樞紐高低點 |
-| **SMC — BOS** (Break of Structure) | 收盤價突破前高/前低，代表市場結構改變 |
+| **SMC — BOS** (Break of Structure) | 收盤突破前高/前低，確認結構方向 |
 | **SMC — CHoCH** (Change of Character) | 第一個反向 BOS，代表趨勢可能轉折 |
-| **SMC — Order Block** | BOS 前最後一根反向K棒，代表機構掛單區 |
-| **FVG** (Fair Value Gap) | 三根K棒形成的價格缺口（失衡區），價格傾向回補 |
+| **SMC — Order Block** | BOS 前最後一根反向K棒，作為機構掛單區與止損錨點 |
+| **FVG** (Fair Value Gap) | 三K棒價格缺口，與 OB 共同構成 SMC 結構確認 |
+| **ATR (14)** | 波動率過濾（條件 E，ATR > 均值 × 90%）與止損距離驗證（第三層）|
 
-### 訊號條件（6 項，需滿足 ≥ 4 項）
+---
 
-**做多 LONG**
-1. 收盤價在 EMA 200 之上（主趨勢向上）
-2. EMA 20 > EMA 50（短期動能向上）
-3. RSI 介於 30 ~ 55（非超買，微回調）
-4. 近期出現看漲 Order Block
-5. 存在未填補的看漲 FVG
-6. 近期出現看漲 BOS
+### 三層篩選架構（v2.0）
 
-**做空 SHORT**（以上條件鏡像）
+```
+第一層：硬性前提（2 項全數成立）
+    ↓ 通過才進入第二層
+第二層：訊號評分（5 選 3）
+    ↓ 通過才進入第三層
+第三層：風險管理驗證（2 項全數成立）
+    ↓ 通過 → 輸出訊號
+```
 
-### 止盈止損
+### 第一層：硬性前提
+
+> 任一不成立 → 直接放棄此訊號
+
+| 方向 | 條件 1 | 條件 2 |
+|:---:|---|---|
+| 🟢 做多 LONG | 收盤 **>** EMA 200 | EMA 20 **>** EMA 50 |
+| 🔴 做空 SHORT | 收盤 **<** EMA 200 | EMA 20 **<** EMA 50 |
+
+### 第二層：訊號評分（5 項，需 ≥ 3 項）
+
+| 條件 | 做多判斷 | 做空判斷 |
+|---|---|---|
+| **A 動能** | RSI > 55，或 RSI 從 <40 回升穿越 45 | RSI < 45，或 RSI 從 >60 下穿 55 |
+| **B SMC 結構** | 近 10 根 K 棒看漲 BOS + (OB 或未填 FVG) — 整組 **1 票** | 近 10 根 K 棒看跌 BOS + (OB 或未填 FVG) — 整組 **1 票** |
+| **C K 棒品質** | 實體比 > 65% 且收盤於 K 棒頂部 30% 區 | 實體比 > 65% 且收盤於 K 棒底部 30% 區 |
+| **D TF 共振** | 高一級 TF 的 EMA200 趨勢向上 | 高一級 TF 的 EMA200 趨勢向下 |
+| **E 波動性** | ATR(14) > 近 20 根 ATR 均值 × 90% | 同左 |
+
+> TF 對照：15m ↑ 1H、1H ↑ 4H、4H ↑ 日線、日線 ↑ 週線
+
+### 第三層：風險管理
+
+> 任一不成立 → 等待更好的入場點
+
+| 驗證 | 標準 |
+|---|---|
+| **SL 錨點明確** | 近期 OB 低點 / FVG 底部存在（作為止損基準）|
+| **SL 距離合理** | \|進場價 − SL\| ≤ ATR(14) × 1.5 |
+
+> R:R 驗證：止盈設為 SL 距離 × 2.0 → R:R = 1:2 ≥ 1:1.5 ✓
+
+### 止盈止損（預設）
 
 | 參數 | 預設 |
 |---|---|
-| 止損 Stop Loss | 進場價 − ATR × 2.0 |
-| 止盈 Take Profit | 進場價 + ATR × 4.0 |
+| 止損 Stop Loss | 進場價 ± ATR × 2.0 |
+| 止盈 Take Profit | 進場價 ± ATR × 4.0 |
 | 風報比 R:R | 1 : 2.0 |
 
 ---
@@ -66,6 +100,7 @@ quant_trading/
 ├── main.py                      # 一次性分析 + 圖表
 ├── monitor.py                   # 即時監控主程式
 ├── stats.py                     # 即時績效查詢工具
+├── backtest_recent.py           # 最近 N 筆交易回測分析
 ├── requirements.txt
 │
 ├── data/
@@ -165,7 +200,8 @@ python monitor.py
 ```
 
 - 每 **5 分鐘** 掃描一次 BTC/USDT 與 ETH/USDT
-- 同一根 K 棒的訊號**只通知一次**（重複偵測自動略過）
+- **只評估最後一根已收盤的 K 棒**（排除當前未收盤的 live 蠟燭，避免指標值抖動誤觸發）
+- 同一根 K 棒的訊號**只通知一次**（以 K 棒開盤時間戳去重，每根 4H K 棒最多一次通知）
 - 偵測到止盈/止損觸發時，自動發送出場通知
 - 每小時在 log 中印出即時績效摘要
 - 所有事件記錄至 `monitor.log`
@@ -185,6 +221,26 @@ python stats.py --trades
 python stats.py --open
 ```
 
+### 4. 回測最近 N 筆交易
+
+對歷史 K 棒執行完整指標 + 訊號 + 回測，並聚焦顯示最近 N 筆的詳細績效：
+
+```bash
+# 預設：BTC/USDT 4H，最近 30 筆
+python backtest_recent.py
+
+# 指定幣種與週期
+python backtest_recent.py --symbol ETH/USDT --timeframe 1h
+
+# 自訂筆數
+python backtest_recent.py --trades 50
+
+# 增加 K 棒數量以確保有足夠交易紀錄
+python backtest_recent.py --trades 30 --limit 1000
+```
+
+輸出包含：勝率、利潤因子、累計盈虧、最大回撤、最大連勝/連敗、LONG/SHORT 分析、逐筆交易明細。
+
 ---
 
 ## Discord 通知範例
@@ -197,7 +253,7 @@ python stats.py --open
 🎯 止盈點位    : $68,005.16  (+5.42%)
 ⚖️ 風報比      : 1 : 2.0
 📊 RSI（14）   : 44.8
-⭐ 訊號強度    : 4 / 6
+⭐ 訊號強度    : 4 / 5
 📉 主趨勢      : 上升趨勢（收盤高於 EMA 200）
 〰️ 短期動能    : EMA 20 > EMA 50（短期動能向上 ↑）
 🏛️ 市場結構突破（BOS）: ✅ 確認
@@ -257,6 +313,9 @@ python stats.py --open
 | 查看勝率摘要 | `python stats.py` |
 | 查看交易明細 | `python stats.py --trades` |
 | 查看持倉中訂單 | `python stats.py --open` |
+| 回測最近 30 筆 | `python backtest_recent.py` |
+| 回測最近 N 筆（自訂） | `python backtest_recent.py --trades 50 --symbol ETH/USDT` |
+| 回測（增加 K 棒） | `python backtest_recent.py --trades 30 --limit 1000` |
 
 ---
 

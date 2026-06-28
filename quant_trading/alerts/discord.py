@@ -21,6 +21,31 @@ _COLOUR_LONG  = 0x26A69A   # teal
 _COLOUR_SHORT = 0xEF5350   # red
 
 
+def _iter_urls(webhook_url: "str | list[str]") -> list[str]:
+    """Normalise a single URL string or a list of URLs into a non-empty list."""
+    if isinstance(webhook_url, str):
+        return [webhook_url] if webhook_url.strip() else []
+    return [u for u in webhook_url if u and u.strip()]
+
+
+def _post_payload(payload: dict, url: str) -> bool:
+    """POST a single JSON payload to one webhook URL. Returns True on success."""
+    try:
+        resp = requests.post(
+            url,
+            data=json.dumps(payload),
+            headers={"Content-Type": "application/json"},
+            timeout=10,
+        )
+        if resp.status_code in (200, 204):
+            return True
+        logger.error("Discord webhook error %s: %s", resp.status_code, resp.text)
+        return False
+    except requests.RequestException as exc:
+        logger.error("Discord webhook request failed: %s", exc)
+        return False
+
+
 def _build_embed(
     symbol: str,
     timeframe: str,
@@ -150,52 +175,44 @@ def send_signal_alert(
     symbol: str,
     timeframe: str,
     row,
-    webhook_url: str,
+    webhook_url: "str | list[str]",
     stop_loss: float | None = None,
     take_profit: float | None = None,
 ) -> bool:
     """
-    POST a signal embed to Discord.
+    POST a signal embed to one or more Discord webhooks.
 
     Parameters
     ----------
     symbol      : e.g. "BTC/USDT"
     timeframe   : e.g. "4h"
     row         : pandas Series for the signal bar
-    webhook_url : Discord webhook URL
+    webhook_url : single webhook URL string, or a list of URLs to broadcast to
     stop_loss   : computed SL price level (optional)
     take_profit : computed TP price level (optional)
 
-    Returns True on success, False on failure.
+    Returns True if at least one webhook succeeded.
     """
-    if not webhook_url:
-        logger.warning("DISCORD_WEBHOOK_URL is empty — alert skipped.")
+    urls = _iter_urls(webhook_url)
+    if not urls:
+        logger.warning("No webhook URLs configured — alert skipped.")
         return False
 
     embed   = _build_embed(symbol, timeframe, row, stop_loss, take_profit)
     payload = {"embeds": [embed]}
-
-    try:
-        resp = requests.post(
-            webhook_url,
-            data=json.dumps(payload),
-            headers={"Content-Type": "application/json"},
-            timeout=10,
-        )
-        if resp.status_code in (200, 204):
-            logger.info("Discord alert sent: %s %s", symbol, timeframe)
-            return True
-        else:
-            logger.error("Discord webhook error %s: %s", resp.status_code, resp.text)
-            return False
-    except requests.RequestException as exc:
-        logger.error("Discord webhook request failed: %s", exc)
-        return False
+    success = False
+    for url in urls:
+        ok = _post_payload(payload, url)
+        if ok:
+            logger.info("Discord alert sent: %s %s → %s", symbol, timeframe, url[:60])
+            success = True
+    return success
 
 
-def send_startup_message(symbols: list[str], timeframe: str, webhook_url: str) -> None:
-    """Send a simple text message when the monitor starts."""
-    if not webhook_url:
+def send_startup_message(symbols: list[str], timeframe: str, webhook_url: "str | list[str]") -> None:
+    """Send a simple text message to all configured webhooks when the monitor starts."""
+    urls = _iter_urls(webhook_url)
+    if not urls:
         return
 
     symbol_list = "  |  ".join(symbols)
@@ -206,27 +223,29 @@ def send_startup_message(symbols: list[str], timeframe: str, webhook_url: str) -
             f"策略：SMC + FVG + EMA + RSI 量化策略"
         )
     }
-    try:
-        requests.post(
-            webhook_url,
-            data=json.dumps(payload),
-            headers={"Content-Type": "application/json"},
-            timeout=10,
-        )
-    except requests.RequestException as exc:
-        logger.warning("Could not send startup message: %s", exc)
+    for url in urls:
+        try:
+            requests.post(
+                url,
+                data=json.dumps(payload),
+                headers={"Content-Type": "application/json"},
+                timeout=10,
+            )
+        except requests.RequestException as exc:
+            logger.warning("Could not send startup message: %s", exc)
 
 
-def send_exit_alert(trade: dict, webhook_url: str) -> bool:
+def send_exit_alert(trade: dict, webhook_url: "str | list[str]") -> bool:
     """
-    Send a Discord notification when a trade hits TP or SL.
+    Send a Discord notification to all configured webhooks when a trade hits TP or SL.
 
     Parameters
     ----------
     trade       : dict from trade_tracker (closed trade record)
-    webhook_url : Discord webhook URL
+    webhook_url : single webhook URL string, or a list of URLs to broadcast to
     """
-    if not webhook_url:
+    urls = _iter_urls(webhook_url)
+    if not urls:
         return False
 
     is_tp    = trade["result"] == "TP"
@@ -267,18 +286,9 @@ def send_exit_alert(trade: dict, webhook_url: str) -> bool:
     }
 
     payload = {"embeds": [embed]}
-    try:
-        resp = requests.post(
-            webhook_url,
-            data=json.dumps(payload),
-            headers={"Content-Type": "application/json"},
-            timeout=10,
-        )
-        if resp.status_code in (200, 204):
+    success = False
+    for url in urls:
+        if _post_payload(payload, url):
             logger.info("Exit alert sent: %s %s %s", trade["symbol"], trade["result"], pnl_label)
-            return True
-        logger.error("Exit alert webhook error %s: %s", resp.status_code, resp.text)
-        return False
-    except requests.RequestException as exc:
-        logger.error("Exit alert request failed: %s", exc)
-        return False
+            success = True
+    return success

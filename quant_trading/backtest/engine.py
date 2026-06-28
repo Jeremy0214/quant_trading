@@ -125,9 +125,18 @@ def run_backtest(
         if position == 0 and signal != 0 and not np.isnan(atr) and atr > 0:
             risk_amount = capital * _risk
 
+            # Prefer per-trade structural SL/TP from the strategy; fall back to ATR.
+            row_sl = df["sl_price"].iloc[i] if "sl_price" in df.columns else np.nan
+            row_tp = df["tp_price"].iloc[i] if "tp_price" in df.columns else np.nan
+            has_struct = not (np.isnan(row_sl) or np.isnan(row_tp))
+
             if signal == 1:                        # Long
-                sl = price - atr * _sl
-                tp = price + atr * _tp
+                if has_struct:
+                    sl = float(row_sl)
+                    tp = float(row_tp)
+                else:
+                    sl = price - atr * _sl
+                    tp = price + atr * _tp
                 risk_per_unit = price - sl
                 if risk_per_unit > 0:
                     pos_size    = risk_amount / risk_per_unit
@@ -138,8 +147,12 @@ def run_backtest(
                     entry_time  = df.index[i]
 
             elif signal == -1:                     # Short
-                sl = price + atr * _sl
-                tp = price - atr * _tp
+                if has_struct:
+                    sl = float(row_sl)
+                    tp = float(row_tp)
+                else:
+                    sl = price + atr * _sl
+                    tp = price - atr * _tp
                 risk_per_unit = sl - price
                 if risk_per_unit > 0:
                     pos_size    = risk_amount / risk_per_unit

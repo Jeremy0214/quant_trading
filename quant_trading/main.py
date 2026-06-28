@@ -68,7 +68,21 @@ def main() -> None:
 
     # ── 3. Signals ────────────────────────────────────────────────────────────
     print("\n[3/5] Generating trading signals …")
-    df = generate_signals(df)
+
+    # Fetch higher-TF trend for TF confluence (Condition D)
+    _htf_map = {"15m": "1h", "1h": "4h", "4h": "1d", "1d": "1w"}
+    _htf_tf   = _htf_map.get(config.TIMEFRAME.lower())
+    htf_trend = None
+    if _htf_tf:
+        try:
+            htf_df = fetch_ohlcv(config.SYMBOL, _htf_tf, limit=250)
+            htf_df = add_ma_ema(htf_df)
+            htf_trend = htf_df["trend_up"]
+            print(f"      ✓ HTF trend ({_htf_tf.upper()}) loaded for TF confluence")
+        except Exception as _e:
+            print(f"      ⚠ HTF trend unavailable ({_e}); Condition D skipped")
+
+    df = generate_signals(df, htf_trend=htf_trend)
     n_long  = (df["signal"] == 1).sum()
     n_short = (df["signal"] == -1).sum()
     print(f"      LONG signals: {n_long}  |  SHORT signals: {n_short}")
@@ -110,7 +124,7 @@ def main() -> None:
                 f"  {ts}  {direction}  "
                 f"close={row['close']:.2f}  "
                 f"RSI={row['RSI']:.1f}  "
-                f"strength={int(row['signal_strength'])}/6"
+                f"strength={int(row['signal_strength'])}/5"
             )
         print("  " + "─" * 48)
     else:

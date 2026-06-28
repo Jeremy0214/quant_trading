@@ -1,0 +1,57 @@
+# ============================================================
+# .gitignore — 不上傳至 GitHub 的檔案清單
+# ============================================================
+
+# ── 私密憑證 / Secrets ───────────────────────────────────────
+quant_trading/secrets_local.py
+stock_forecast/hachi.env
+stock_forecast/.env
+.env
+*.env
+
+# ── Python 快取 ──────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+
+# ── 虛擬環境 ─────────────────────────────────────────────────
+.venv/
+venv/
+env/
+ENV/
+
+# ── 日誌 / Log 檔 ────────────────────────────────────────────
+*.log
+*.log.bak
+quant_trading/monitor.log
+quant_trading/monitor.log.bak
+
+# ── 交易紀錄（含個人倉位資訊）───────────────────────────────
+quant_trading/trades_log.json
+
+# ── 回測 / 調優結果 ──────────────────────────────────────────
+quant_trading/_tune_results.txt
+
+# ── 報表 / 圖表輸出 ──────────────────────────────────────────
+quant_trading/chart.html
+*.html
+
+# ── IDE / 編輯器設定 ─────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ── OS 產生的檔案 ────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ── Jupyter Notebook 檢查點 ──────────────────────────────────
+.ipynb_checkpoints/
+
+# ── 套件打包 ─────────────────────────────────────────────────
+dist/
+build/
+*.egg-info/

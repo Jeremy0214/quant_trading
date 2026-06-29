@@ -76,7 +76,8 @@ CHECK_INTERVAL_SECONDS = 300  # 5 minutes
 # Webhook URLs 存放於 secrets_local.py（已加入 .gitignore，不會上傳）。
 # 若 secrets_local.py 不存在，則預設為空字串（不發送 Discord 通知）。
 try:
-    from secrets_local import DISCORD_WEBHOOK_URL, DISCORD_WEBHOOK_URL_2  # noqa: F401
+    from secrets_local import DISCORD_WEBHOOK_URL, DISCORD_WEBHOOK_URL_2, DISCORD_WEBHOOK_URL_3 # noqa: F401
 except ImportError:
     DISCORD_WEBHOOK_URL   = ""  # 請在 secrets_local.py 填入 Webhook URL
     DISCORD_WEBHOOK_URL_2 = ""
+    DISCORD_WEBHOOK_URL_3 = ""

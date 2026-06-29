@@ -221,6 +221,7 @@ def main() -> None:
         u for u in [
             getattr(config, "DISCORD_WEBHOOK_URL",  ""),
             getattr(config, "DISCORD_WEBHOOK_URL_2", ""),
+            getattr(config, "DISCORD_WEBHOOK_URL_3", ""),
         ]
         if u and u.strip()
     ]

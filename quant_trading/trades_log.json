@@ -678,10 +678,10 @@
     "rr_ratio": 2.0,
     "signal_time": "2026-06-29 08:00:00+00:00",
     "alert_time": "2026-06-29 09:02:32.764572+00:00",
-    "exit_price": null,
-    "exit_time": null,
-    "result": "OPEN",
-    "pnl_pct": null
+    "exit_price": 1598.518045,
+    "exit_time": "2026-06-29 17:12:57.148607+00:00",
+    "result": "SL",
+    "pnl_pct": -1.6235
   },
   {
     "id": "09aba2f8",
@@ -696,10 +696,10 @@
     "rr_ratio": 2.0,
     "signal_time": "2026-06-29 11:00:00+00:00",
     "alert_time": "2026-06-29 12:05:06.849054+00:00",
-    "exit_price": null,
-    "exit_time": null,
-    "result": "OPEN",
-    "pnl_pct": null
+    "exit_price": 1602.241843,
+    "exit_time": "2026-06-29 17:12:57.148607+00:00",
+    "result": "SL",
+    "pnl_pct": -1.7342
   },
   {
     "id": "96c4a685",

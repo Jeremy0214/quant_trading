@@ -34,15 +34,27 @@ from datetime import datetime, timezone
 
 warnings.filterwarnings("ignore")
 
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s  %(levelname)-8s  %(message)s",
-    datefmt="%Y-%m-%d %H:%M:%S",
-    handlers=[
-        logging.StreamHandler(sys.stdout),
-        logging.FileHandler("monitor.log", encoding="utf-8"),
-    ],
-)
+
+class _FileLogFilter(logging.Filter):
+    """Only allow explicitly marked records to be written to monitor.log."""
+
+    def filter(self, record: logging.LogRecord) -> bool:
+        return bool(getattr(record, "write_to_file", False))
+
+
+logging.basicConfig(level=logging.INFO, format="%(asctime)s  %(levelname)-8s  %(message)s", datefmt="%Y-%m-%d %H:%M:%S")
+root_logger = logging.getLogger()
+root_logger.handlers.clear()
+
+console_handler = logging.StreamHandler(sys.stdout)
+console_handler.setFormatter(logging.Formatter("%(asctime)s  %(levelname)-8s  %(message)s", datefmt="%Y-%m-%d %H:%M:%S"))
+root_logger.addHandler(console_handler)
+
+file_handler = logging.FileHandler("monitor.log", mode="w", encoding="utf-8")
+file_handler.setFormatter(logging.Formatter("%(asctime)s  %(levelname)-8s  %(message)s", datefmt="%Y-%m-%d %H:%M:%S"))
+file_handler.addFilter(_FileLogFilter())
+root_logger.addHandler(file_handler)
+
 log = logging.getLogger(__name__)
 
 import config  # noqa: E402
@@ -121,6 +133,7 @@ def _check_symbol(
             symbol, emoji, trade["result"],
             trade["entry_price"], trade["exit_price"],
             trade["pnl_pct"], trade["id"],
+            extra={"write_to_file": True},
         )
         send_exit_alert(trade, webhook_urls)
 
@@ -160,6 +173,7 @@ def _check_symbol(
         "[%s] NEW %s signal  |  close=%.2f  SL=%.2f  TP=%.2f  RSI=%.1f  strength=%d/5  candle=%s",
         symbol, direction, entry, stop_loss, take_profit,
         latest_row["RSI"], int(latest_row["signal_strength"]), latest_ts,
+        extra={"write_to_file": True},
     )
 
     sent = send_signal_alert(

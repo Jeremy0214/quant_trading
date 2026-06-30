@@ -235,6 +235,34 @@ def send_startup_message(symbols: list[str], timeframe: str, webhook_url: "str |
             logger.warning("Could not send startup message: %s", exc)
 
 
+def send_shutdown_message(symbols: list[str], timeframe: str, webhook_url: "str | list[str]") -> None:
+    """Send a message to all configured webhooks when the monitor is stopped (Ctrl+C)."""
+    urls = _iter_urls(webhook_url)
+    if not urls:
+        return
+
+    symbol_list = "  |  ".join(symbols)
+    now_utc = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
+    payload = {
+        "content": (
+            f"🛑  **監控已中止**\n"
+            f"監控幣種：`{symbol_list}`  —  週期：`{timeframe.upper()}`\n"
+            f"策略：SMC + FVG + EMA + RSI 量化策略\n"
+            f"中止時間：`{now_utc}`"
+        )
+    }
+    for url in urls:
+        try:
+            requests.post(
+                url,
+                data=json.dumps(payload),
+                headers={"Content-Type": "application/json"},
+                timeout=10,
+            )
+        except requests.RequestException as exc:
+            logger.warning("Could not send shutdown message: %s", exc)
+
+
 def send_exit_alert(trade: dict, webhook_url: "str | list[str]") -> bool:
     """
     Send a Discord notification to all configured webhooks when a trade hits TP or SL.

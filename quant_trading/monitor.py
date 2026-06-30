@@ -58,7 +58,7 @@ root_logger.addHandler(file_handler)
 log = logging.getLogger(__name__)
 
 import config  # noqa: E402
-from alerts.discord                import send_signal_alert, send_startup_message, send_exit_alert
+from alerts.discord                import send_signal_alert, send_startup_message, send_shutdown_message, send_exit_alert
 from backtest.engine               import calculate_atr
 from data.fetcher                  import fetch_ohlcv
 from indicators.ma_ema             import add_ma_ema
@@ -295,6 +295,7 @@ def main() -> None:
             time.sleep(interval)
         except KeyboardInterrupt:
             log.info("Monitor stopped by user.")
+            send_shutdown_message(symbols, timeframe, webhook_urls)
             sys.exit(0)
 
 

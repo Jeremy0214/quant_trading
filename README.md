@@ -104,7 +104,19 @@ cd quant_trading
 pip install -r requirements.txt
 python main.py
 ```
+```
+VM Look & Edit
 
+Look:
+tmux attach
+
+Edit： nano 檔案名稱 (例如：nano config.txt)
+
+操作方式：
+使用鍵盤方向鍵移動游標並直接修改文字。
+修改完成後，按下 Ctrl + O 準備存檔，接著按 Enter 確認檔名。
+按下 Ctrl + X 離開編輯器。
+```
 ### stock_forecast
 ```bash
 cd stock_forecast

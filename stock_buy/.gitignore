@@ -1,0 +1,28 @@
+# 環境變數 (請勿上傳到 Git)
+.env
+
+# Discord Webhook URL (請勿上傳到 Git)
+webhook.txt
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+
+# 虛擬環境
+venv/
+.venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+
+# 日誌
+*.log
+logs/

@@ -11,6 +11,7 @@ LIMIT = 500          # Number of candles to fetch
 EMA_SHORT  = 20
 EMA_LONG   = 50
 EMA_TREND  = 200
+EMA_FILTER = 56    # Directional bias: close > EMA_56 → long only; close < EMA_56 → short only
 
 # --- RSI ---
 RSI_PERIOD      = 14
@@ -18,7 +19,8 @@ RSI_OVERBOUGHT  = 70
 RSI_OVERSOLD    = 30
 
 # --- SMC ---
-SMC_SWING_LENGTH = 10   # Lookback for swing high / swing low detection
+SMC_SWING_LENGTH    = 10   # Lookback for swing high / swing low detection
+OB_ACTIVE_LOOKBACK  = 30   # Bars an OB zone stays active before it is considered stale
 
 # --- Backtest ---
 INITIAL_CAPITAL     = 10_000   # USDT
@@ -37,6 +39,11 @@ TAKE_PROFIT_ATR_MULT = 4.0     # fallback only
 
 # 風報比（TP = entry ± risk × RR_RATIO）
 RR_RATIO            = 1.7   # v4 拉高至 1.7（實測 avgWin/avgLoss ≈ 1.6）
+
+# ── v5 雙重止盈 ─────────────────────────────────────────────────────────────
+# 第一次止盈 1:1，第二次止盈 1:2，各代表半倉出場
+TP1_RR              = 1.0   # 第一次止盈（1:1 風報比）
+TP2_RR              = 2.0   # 第二次止盈（1:2 風報比）
 
 # 只做多：加密貨幣多單勝率(~59%)顯著高於空單(~45%)，預設關閉空單
 LONG_ONLY           = True  # 設為 False 可恢復雙向交易

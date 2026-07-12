@@ -17,7 +17,7 @@ trend_down    close < EMA_200
 
 import pandas as pd
 
-from config import EMA_SHORT, EMA_LONG, EMA_TREND
+from config import EMA_SHORT, EMA_LONG, EMA_TREND, EMA_FILTER
 
 
 def _sma(series: pd.Series, period: int) -> pd.Series:
@@ -29,11 +29,12 @@ def _ema(series: pd.Series, period: int) -> pd.Series:
 
 
 def add_ma_ema(df: pd.DataFrame) -> pd.DataFrame:
-    df[f"EMA_{EMA_SHORT}"] = _ema(df["close"], EMA_SHORT)
-    df[f"EMA_{EMA_LONG}"]  = _ema(df["close"], EMA_LONG)
-    df[f"EMA_{EMA_TREND}"] = _ema(df["close"], EMA_TREND)
-    df[f"MA_{EMA_SHORT}"]  = _sma(df["close"], EMA_SHORT)
-    df[f"MA_{EMA_LONG}"]   = _sma(df["close"], EMA_LONG)
+    df[f"EMA_{EMA_SHORT}"]  = _ema(df["close"], EMA_SHORT)
+    df[f"EMA_{EMA_LONG}"]   = _ema(df["close"], EMA_LONG)
+    df[f"EMA_{EMA_TREND}"]  = _ema(df["close"], EMA_TREND)
+    df[f"EMA_{EMA_FILTER}"] = _ema(df["close"], EMA_FILTER)   # directional bias (56)
+    df[f"MA_{EMA_SHORT}"]   = _sma(df["close"], EMA_SHORT)
+    df[f"MA_{EMA_LONG}"]    = _sma(df["close"], EMA_LONG)
 
     # Golden / Death cross signals
     above = df[f"EMA_{EMA_SHORT}"] > df[f"EMA_{EMA_LONG}"]

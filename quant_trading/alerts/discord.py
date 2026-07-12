@@ -52,6 +52,8 @@ def _build_embed(
     row,
     stop_loss: float | None = None,
     take_profit: float | None = None,
+    take_profit_2: float | None = None,
+    signal_type: str = "TREND",
 ) -> dict:
     """Build a Discord embed payload from a signal row (pandas Series)."""
     is_long    = int(row["signal"]) == 1
@@ -60,12 +62,12 @@ def _build_embed(
     strength   = int(row["signal_strength"])
 
     # ── Condition breakdown ────────────────────────────────────────────────
-    from config import EMA_SHORT, EMA_LONG, EMA_TREND
+    from config import EMA_SHORT, EMA_LONG, EMA_FILTER
 
     trend_label = (
-        f"📈 上升趨勢（收盤高於 EMA {EMA_TREND}）"
-        if row["trend_up"]
-        else f"📉 下降趨勢（收盤低於 EMA {EMA_TREND}）"
+        f"📈 上升趨勢（收盤高於 EMA {EMA_FILTER}）"
+        if row["close"] > row[f"EMA_{EMA_FILTER}"]
+        else f"📉 下降趨勢（收盤低於 EMA {EMA_FILTER}）"
     )
     ema_label = (
         f"EMA {EMA_SHORT} > EMA {EMA_LONG}（短期動能向上 ↑）"
@@ -94,17 +96,26 @@ def _build_embed(
 
     # ── SL / TP display ───────────────────────────────────────────────────────
     if stop_loss is not None and take_profit is not None:
-        rr_ratio = abs(take_profit - entry) / abs(entry - stop_loss) if entry != stop_loss else 0
-        sl_label = f"`${stop_loss:,.2f}`  ({(stop_loss - entry) / entry * 100:.2f}%)"
-        tp_label = f"`${take_profit:,.2f}`  (+{(take_profit - entry) / entry * 100:.2f}%)"
-        rr_label = f"`1 : {rr_ratio:.1f}`"
+        risk      = abs(entry - stop_loss)
+        rr1       = abs(take_profit - entry) / risk if risk else 0
+        sl_label  = f"`${stop_loss:,.2f}`  ({(stop_loss - entry) / entry * 100:.2f}%)"
+        tp_label  = f"`${take_profit:,.2f}`  ({(take_profit - entry) / entry * 100:+.2f}%)  [1:{rr1:.1f}]"
+        if take_profit_2 is not None:
+            rr2      = abs(take_profit_2 - entry) / risk if risk else 0
+            tp2_label = f"`${take_profit_2:,.2f}`  ({(take_profit_2 - entry) / entry * 100:+.2f}%)  [1:{rr2:.1f}]"
+        else:
+            tp2_label = "—"
+        rr_label  = f"`TP1 1:{rr1:.1f}  /  TP2 1:{rr2:.1f}`" if take_profit_2 else f"`1:{rr1:.1f}`"
     else:
-        sl_label = "—"
-        tp_label = "—"
-        rr_label = "—"
+        sl_label  = "—"
+        tp_label  = "—"
+        tp2_label = "—"
+        rr_label  = "—"
+
+    sig_type_label = "🔄 推進塊反轉（PB）" if signal_type == "PB" else "📊 趨勢順勢（TREND)"
 
     embed = {
-        "title": f"{direction}  —  {symbol}  {timeframe.upper()}",
+        "title": f"{direction}  [{signal_type}]  —  {symbol}  {timeframe.upper()}",
         "color": colour,
         "fields": [
             {
@@ -128,13 +139,23 @@ def _build_embed(
                 "inline": True,
             },
             {
-                "name": "🎯 止盈點位",
+                "name": "🎯 止盈一（TP1 1:1）",
                 "value": tp_label,
+                "inline": True,
+            },
+            {
+                "name": "🎯 止盈二（TP2 1:2）",
+                "value": tp2_label,
                 "inline": True,
             },
             {
                 "name": "⚖️ 風報比",
                 "value": rr_label,
+                "inline": True,
+            },
+            {
+                "name": "🏷️ 信號類型",
+                "value": sig_type_label,
                 "inline": True,
             },
             {
@@ -148,7 +169,7 @@ def _build_embed(
                 "inline": False,
             },
             {
-                "name": "🏛️ SMC — 市場結構突破（BOS）",
+                "name": "🏛️ SMC — 市場結構（BOS/MSS）",
                 "value": bos_ok,
                 "inline": True,
             },
@@ -164,7 +185,7 @@ def _build_embed(
             },
         ],
         "footer": {
-            "text": f"SMC + FVG + EMA + RSI 量化策略  |  {now_utc}",
+            "text": f"SMC v5: EMA-56 + OB/PB + FVG + LiqSwp + Dual-TP  |  {now_utc}",
         },
         "timestamp": datetime.now(timezone.utc).isoformat(),
     }
@@ -178,6 +199,8 @@ def send_signal_alert(
     webhook_url: "str | list[str]",
     stop_loss: float | None = None,
     take_profit: float | None = None,
+    take_profit_2: float | None = None,
+    signal_type: str = "TREND",
 ) -> bool:
     """
     POST a signal embed to one or more Discord webhooks.
@@ -198,7 +221,7 @@ def send_signal_alert(
         logger.warning("No webhook URLs configured — alert skipped.")
         return False
 
-    embed   = _build_embed(symbol, timeframe, row, stop_loss, take_profit)
+    embed   = _build_embed(symbol, timeframe, row, stop_loss, take_profit, take_profit_2, signal_type)
     payload = {"embeds": [embed]}
     success = False
     for url in urls:

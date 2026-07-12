@@ -61,11 +61,13 @@ def register_trade(
     entry_price: float,
     stop_loss: float,
     take_profit: float,
-    signal_time,          # pandas Timestamp or datetime
+    signal_time,                    # pandas Timestamp or datetime
     alert_time=None,
+    take_profit_2: float | None = None,
 ) -> str:
     """
     Register a new open trade.  Returns the trade ID.
+    Supports dual take-profit levels (TP1 + TP2).
     Skips registration if an identical open trade (same symbol + signal_time)
     already exists (prevents duplicate entries on monitor restart).
     """
@@ -87,22 +89,24 @@ def register_trade(
         reward_pct = (entry_price - take_profit) / entry_price * 100
 
     trade = {
-        "id":           str(uuid.uuid4())[:8],
-        "symbol":       symbol,
-        "timeframe":    timeframe,
-        "direction":    direction,
-        "entry_price":  round(entry_price, 6),
-        "stop_loss":    round(stop_loss,   6),
-        "take_profit":  round(take_profit, 6),
-        "risk_pct":     round(risk_pct,    4),
-        "reward_pct":   round(reward_pct,  4),
-        "rr_ratio":     round(rr,          3),
-        "signal_time":  sig_ts,
-        "alert_time":   str(alert_time or datetime.now(timezone.utc)),
-        "exit_price":   None,
-        "exit_time":    None,
-        "result":       "OPEN",
-        "pnl_pct":      None,
+        "id":            str(uuid.uuid4())[:8],
+        "symbol":        symbol,
+        "timeframe":     timeframe,
+        "direction":     direction,
+        "entry_price":   round(entry_price, 6),
+        "stop_loss":     round(stop_loss,   6),
+        "take_profit":   round(take_profit, 6),
+        "take_profit_2": round(take_profit_2, 6) if take_profit_2 is not None else None,
+        "risk_pct":      round(risk_pct,    4),
+        "reward_pct":    round(reward_pct,  4),
+        "rr_ratio":      round(rr,          3),
+        "signal_time":   sig_ts,
+        "alert_time":    str(alert_time or datetime.now(timezone.utc)),
+        "tp1_hit":       False,        # True after first TP is reached
+        "exit_price":    None,
+        "exit_time":     None,
+        "result":        "OPEN",
+        "pnl_pct":       None,
     }
     trades.append(trade)
     _save(trades)
@@ -112,50 +116,95 @@ def register_trade(
 def check_open_trades(symbol: str, current_price: float) -> list:
     """
     Check all OPEN trades for `symbol` against `current_price`.
-    Closes trades that hit SL or TP; returns a list of newly-closed trades.
+    Supports dual take-profit (TP1 partial close → TP2 full close).
+    Returns a list of trade-event dicts for closed or partially-closed events.
     """
     trades   = _load()
-    closed   = []
+    events   = []
     modified = False
 
     for trade in trades:
         if trade["symbol"] != symbol or trade["result"] != "OPEN":
             continue
 
-        entry  = trade["entry_price"]
-        sl     = trade["stop_loss"]
-        tp     = trade["take_profit"]
-        hit    = None
-        exit_p = None
+        entry    = trade["entry_price"]
+        sl       = trade["stop_loss"]
+        tp1      = trade["take_profit"]
+        tp2      = trade.get("take_profit_2")
+        tp1_done = trade.get("tp1_hit", False)
+        is_long  = trade["direction"] == "LONG"
 
-        if trade["direction"] == "LONG":
-            if current_price <= sl:
-                hit, exit_p = "SL", sl
-            elif current_price >= tp:
-                hit, exit_p = "TP", tp
-        else:  # SHORT
-            if current_price >= sl:
-                hit, exit_p = "SL", sl
-            elif current_price <= tp:
-                hit, exit_p = "TP", tp
+        # ── Phase 1: waiting for TP1 ────────────────────────────────────────
+        if not tp1_done:
+            if (is_long and current_price >= tp1) or (not is_long and current_price <= tp1):
+                # TP1 hit: partial close (50 %)
+                trade["tp1_hit"] = True
+                pnl_tp1 = (
+                    (tp1 - entry) / entry * 100 if is_long
+                    else (entry - tp1) / entry * 100
+                )
+                events.append({
+                    **trade,
+                    "result":     "TP1",
+                    "exit_price": round(tp1, 6),
+                    "exit_time":  str(datetime.now(timezone.utc)),
+                    "pnl_pct":    round(pnl_tp1, 4),
+                    "note":       "50% position closed at TP1",
+                })
+                modified = True
+                # If no TP2 configured, fully close the trade
+                if tp2 is None:
+                    trade["result"]     = "TP"
+                    trade["exit_price"] = round(tp1, 6)
+                    trade["exit_time"]  = str(datetime.now(timezone.utc))
+                    trade["pnl_pct"]    = round(pnl_tp1, 4)
+                continue
 
-        if hit:
-            pnl = (
-                (exit_p - entry) / entry * 100
-                if trade["direction"] == "LONG"
-                else (entry - exit_p) / entry * 100
-            )
-            trade["result"]     = hit
-            trade["exit_price"] = round(exit_p, 6)
-            trade["exit_time"]  = str(datetime.now(timezone.utc))
-            trade["pnl_pct"]    = round(pnl, 4)
-            closed.append(dict(trade))   # snapshot before save
-            modified = True
+            if (is_long and current_price <= sl) or (not is_long and current_price >= sl):
+                pnl = (
+                    (sl - entry) / entry * 100 if is_long
+                    else (entry - sl) / entry * 100
+                )
+                trade["result"]     = "SL"
+                trade["exit_price"] = round(sl, 6)
+                trade["exit_time"]  = str(datetime.now(timezone.utc))
+                trade["pnl_pct"]    = round(pnl, 4)
+                events.append(dict(trade))
+                modified = True
+
+        # ── Phase 2: TP1 already hit, waiting for TP2 or SL ─────────────────
+        else:
+            if tp2 is not None and (
+                (is_long and current_price >= tp2)
+                or (not is_long and current_price <= tp2)
+            ):
+                pnl_tp2 = (
+                    (tp2 - entry) / entry * 100 if is_long
+                    else (entry - tp2) / entry * 100
+                )
+                trade["result"]     = "TP"
+                trade["exit_price"] = round(tp2, 6)
+                trade["exit_time"]  = str(datetime.now(timezone.utc))
+                trade["pnl_pct"]    = round(pnl_tp2, 4)
+                events.append(dict(trade))
+                modified = True
+
+            elif (is_long and current_price <= sl) or (not is_long and current_price >= sl):
+                pnl = (
+                    (sl - entry) / entry * 100 if is_long
+                    else (entry - sl) / entry * 100
+                )
+                trade["result"]     = "SL_AFTER_TP1"  # partial win
+                trade["exit_price"] = round(sl, 6)
+                trade["exit_time"]  = str(datetime.now(timezone.utc))
+                trade["pnl_pct"]    = round(pnl, 4)
+                events.append(dict(trade))
+                modified = True
 
     if modified:
         _save(trades)
 
-    return closed
+    return events
 
 
 def get_summary() -> dict:

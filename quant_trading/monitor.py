@@ -125,17 +125,30 @@ def _check_symbol(
     current_price = float(df["close"].iloc[-1])
 
     # ── Step 1 : check if any open trades have hit SL / TP ───────────────────
-    closed_trades = check_open_trades(symbol, current_price)
-    for trade in closed_trades:
-        emoji  = "🎯" if trade["result"] == "TP" else "🛑"
+    trade_events = check_open_trades(symbol, current_price)
+    for trade in trade_events:
+        result = trade["result"]
+        if result == "TP1":
+            emoji = "🎯"
+            label = "TP1 (50% closed)"
+        elif result == "TP":
+            emoji = "🏆"
+            label = "TP2 (full close)"
+        elif result == "SL_AFTER_TP1":
+            emoji = "↗️"
+            label = "SL after TP1 (partial win)"
+        else:
+            emoji = "🛑"
+            label = result
         log.info(
-            "[%s] %s %s hit  |  entry=%.2f  exit=%.2f  pnl=%+.2f%%  id=%s",
-            symbol, emoji, trade["result"],
+            "[%s] %s %s  |  entry=%.2f  exit=%.2f  pnl=%+.2f%%  id=%s",
+            symbol, emoji, label,
             trade["entry_price"], trade["exit_price"],
             trade["pnl_pct"], trade["id"],
             extra={"write_to_file": True},
         )
-        send_exit_alert(trade, webhook_urls)
+        if result != "TP1":   # only send final-exit Discord alerts
+            send_exit_alert(trade, webhook_urls)
 
     # ── Step 2 : detect new signal ────────────────────────────────────────────
     # Only evaluate the last CLOSED candle (iloc[-1] is the live/unfinished bar).
@@ -158,20 +171,40 @@ def _check_symbol(
         )
         return
 
-    # Compute SL / TP from ATR
-    atr_val = float(calculate_atr(df).iloc[-1])
-    entry   = float(latest_row["close"])
+    # Use SL / TP from strategy output; fall back to ATR multiples if missing
+    atr_val     = float(calculate_atr(df).iloc[-1])
+    entry       = float(latest_row["close"])
+    sig_type    = str(latest_row.get("signal_type", "TREND"))
 
-    if latest_row["signal"] == 1:   # Long
-        stop_loss   = entry - atr_val * config.STOP_LOSS_ATR_MULT
-        take_profit = entry + atr_val * config.TAKE_PROFIT_ATR_MULT
-    else:                           # Short
-        stop_loss   = entry + atr_val * config.STOP_LOSS_ATR_MULT
-        take_profit = entry - atr_val * config.TAKE_PROFIT_ATR_MULT
+    sl_raw  = latest_row.get("sl_price")
+    tp1_raw = latest_row.get("tp1_price")
+    tp2_raw = latest_row.get("tp2_price")
+
+    import math
+    def _is_valid(v) -> bool:
+        try:
+            return v is not None and not math.isnan(float(v))
+        except (TypeError, ValueError):
+            return False
+
+    if _is_valid(sl_raw) and _is_valid(tp1_raw):
+        stop_loss    = float(sl_raw)
+        take_profit  = float(tp1_raw)
+        take_profit_2 = float(tp2_raw) if _is_valid(tp2_raw) else None
+    else:
+        # Fallback: ATR-based SL/TP (no TP2 in this path)
+        if latest_row["signal"] == 1:
+            stop_loss   = entry - atr_val * config.STOP_LOSS_ATR_MULT
+            take_profit = entry + atr_val * config.TAKE_PROFIT_ATR_MULT
+        else:
+            stop_loss   = entry + atr_val * config.STOP_LOSS_ATR_MULT
+            take_profit = entry - atr_val * config.TAKE_PROFIT_ATR_MULT
+        take_profit_2 = None
 
     log.info(
-        "[%s] NEW %s signal  |  close=%.2f  SL=%.2f  TP=%.2f  RSI=%.1f  strength=%d/5  candle=%s",
-        symbol, direction, entry, stop_loss, take_profit,
+        "[%s] NEW %s [%s]  |  close=%.2f  SL=%.2f  TP1=%.2f  TP2=%s  RSI=%.1f  strength=%d/5  candle=%s",
+        symbol, direction, sig_type, entry, stop_loss, take_profit,
+        f"{take_profit_2:.2f}" if take_profit_2 else "—",
         latest_row["RSI"], int(latest_row["signal_strength"]), latest_ts,
         extra={"write_to_file": True},
     )
@@ -183,6 +216,8 @@ def _check_symbol(
         webhook_url=webhook_urls,
         stop_loss=stop_loss,
         take_profit=take_profit,
+        take_profit_2=take_profit_2,
+        signal_type=sig_type,
     )
 
     if sent:
@@ -197,6 +232,7 @@ def _check_symbol(
             entry_price=entry,
             stop_loss=stop_loss,
             take_profit=take_profit,
+            take_profit_2=take_profit_2,
             signal_time=latest_ts,
         )
         log.info("[%s] Trade registered in journal  id=%s", symbol, trade_id)

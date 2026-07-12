@@ -179,7 +179,7 @@ def main() -> None:
     print(f"  {'#':>3}  {'進場時間':^19}  {'方向':^5}  {'進場價':>10}  {'出場價':>10}  {'PnL%':>7}  結果")
     print(f"  {'─'*3}  {'─'*19}  {'─'*5}  {'─'*10}  {'─'*10}  {'─'*7}  ────")
     for i, (_, row) in enumerate(recent.iterrows(), 1):
-        marker  = "🎯" if row["result"] == "TP" else "🛑"
+        marker  = "🎯" if row["result"] in ("TP1", "TP2") else "⚖️" if row["result"] == "BE" else "🛑"
         dir_str = "LONG " if row["direction"] == "LONG" else "SHORT"
         ts      = str(row["entry_time"])[:19]
         print(

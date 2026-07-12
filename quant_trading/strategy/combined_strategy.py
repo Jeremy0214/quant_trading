@@ -300,16 +300,27 @@ def generate_signals(
     df["tp_price"] = df["tp1_price"]
 
     # -- Signal strength score (0-5) for Discord display -------------------------
-    strength = (
-        structure_bull_recent.astype(int) + structure_bear_recent.astype(int)
-        + in_bull_ob.astype(int)           + in_bear_ob.astype(int)
-        + smc_conf_long.astype(int)        + smc_conf_short.astype(int)
-        + in_discount.astype(int)          + in_premium.astype(int)
+    # Each direction uses only its own bullish/bearish components.
+    strength_long = (
+        structure_bull_recent.astype(int)
+        + in_bull_ob.astype(int)
+        + smc_conf_long.astype(int)
+        + in_discount.astype(int)
         + vol_ok.astype(int)
     ).clip(upper=5)
 
-    sig_mask = df["signal"] != 0
-    df.loc[sig_mask, "signal_strength"] = strength[sig_mask]
+    strength_short = (
+        structure_bear_recent.astype(int)
+        + in_bear_ob.astype(int)
+        + smc_conf_short.astype(int)
+        + in_premium.astype(int)
+        + vol_ok.astype(int)
+    ).clip(upper=5)
+
+    long_sig_mask  = df["signal"] == 1
+    short_sig_mask = df["signal"] == -1
+    df.loc[long_sig_mask,  "signal_strength"] = strength_long[long_sig_mask]
+    df.loc[short_sig_mask, "signal_strength"] = strength_short[short_sig_mask]
 
     # -- Safety: remove signals where SL ended up on the wrong side of entry -----
     bad = (df["signal"] != 0) & (

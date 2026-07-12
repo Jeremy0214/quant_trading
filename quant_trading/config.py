@@ -86,8 +86,8 @@ EXCHANGE = "binance"
 
 # Symbols to monitor simultaneously
 MONITOR_SYMBOLS = ["BTC/USDT", "ETH/USDT"]
-MONITOR_TIMEFRAME = "1h"
-MONITOR_LIMIT = 300          # candles to fetch per check
+MONITOR_TIMEFRAME = "4h"
+MONITOR_LIMIT = 500          # candles to fetch per check (4H × 500 ≈ 83 days)
 
 # How often (seconds) to poll Binance for new candles
 # 4H candle = 14400 s; checking every 5 min catches the close quickly
